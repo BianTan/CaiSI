@@ -62,6 +62,7 @@ export default {
 .home-head {
   margin: 40px;
   color: white;
+  min-height: 160px;
   margin-bottom: 64px;
   transition: all .5s ease;
   opacity: 1;

@@ -4,7 +4,7 @@
     <nav-bar left="bars" title="彩思天气" right="search" @rightClick="console.log('click')"/>
     <!-- 菜单栏 ↑ -->
     <!-- 用户信息 ↓ -->
-    <home-head v-show="!addressList[activeIndex].loading"/>
+    <home-head v-if="!addressList[activeIndex].loading"/>
     <!-- 用户信息 ↑ -->
     <!-- 背景颜色 ↓ -->
     <home-background/>
