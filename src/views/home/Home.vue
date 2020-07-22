@@ -24,13 +24,13 @@ import HomeList from './childs/HomeList'
 
 export default {
   name: 'Home',
+  mixins: [AmapMixin],
   components: {
     NavBar,
     HomeHead,
     HomeBackground,
     HomeList
   },
-  mixins: [AmapMixin],
   created() {
     const list = this.addressList
     if (!list[0].unshow) { // 判断是否开启定位天气展示
