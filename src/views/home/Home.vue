@@ -14,6 +14,7 @@
     <!-- 天气列表 ↓ -->
     <home-list/>
     <!-- 天气列表 ↑ -->
+    <cart-detail/>
   </div>
 </template>
 
@@ -23,6 +24,7 @@ import NavBar from '@/components/navbar/NavBar'
 import HomeHead from './childs/HomeHead'
 import HomeBackground from './childs/HomeBackground'
 import HomeList from './childs/HomeList'
+import CartDetail from '@/components/listcart/CartDetail'
 
 export default {
   name: 'Home',
@@ -31,7 +33,8 @@ export default {
     NavBar,
     HomeHead,
     HomeBackground,
-    HomeList
+    HomeList,
+    CartDetail
   },
   created() {
     const list = this.addressList

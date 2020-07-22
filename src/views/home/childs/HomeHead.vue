@@ -41,7 +41,7 @@ export default {
     */
     setTimeout(() => {
       this.show = this.selected
-    }, 800)
+    }, 600)
   },
   filters: {
     /**
@@ -63,7 +63,7 @@ export default {
   margin: 40px;
   color: white;
   margin-bottom: 64px;
-  transition: all .5s ease;
+  transition: all .4s ease;
   opacity: 1;
   transform: translate(0, 0);
   .avatar {
@@ -90,7 +90,7 @@ export default {
   }
 }
 .showHead {
-  animation: showHead .8s;
+  animation: showHead .6s;
   animation-fill-mode: forwards;
 }
 @keyframes showHead {
@@ -105,6 +105,6 @@ export default {
 }
 .cart-open {
   opacity: 0;
-  transform: translate(0, 20px)
+  transform: translate(0, 24px)
 }
 </style>

@@ -5,7 +5,7 @@
         v-for="(li, index) of addressList"
         v-show="unShowCart(index)"
         :key="li.city"
-        :style="{ transform: `translateX(-${activeIndex * 100}%)` }">
+        :style="{ transform: `translate3d(-${activeIndex * 100}%, 0, 0)` }">
         <list-cart
           v-if="unShowCart(index)"
           v-show="loadCart(li.loading)"
@@ -65,7 +65,7 @@ export default {
     let touch = {}
     // 触摸操作
     this.$el.addEventListener('touchstart', e => {
-      touch.startX = e.touches[0].clientX
+      touch.startX = touch.endX = e.touches[0].clientX
     })
     this.$el.addEventListener('touchmove', e => {
       touch.endX = e.touches[0].clientX
@@ -74,15 +74,15 @@ export default {
       if (!touch.endX || Math.abs(touch.endX - touch.startX) < 50) {
         return
       }
-      if (touch.startX > touch.endX) {
+      if (!this.selected && touch.startX > touch.endX) {
         this.nextLi()
-      } else {
+      } else if (!this.selected) {
         this.prevLi()
       }
     })
     // 鼠标操作
     this.$el.addEventListener('mousedown', e => {
-      touch.startX = e.clientX
+      touch.startX = touch.endX = e.clientX
       this.$el.addEventListener('mousemove', e => {
         touch.endX = e.clientX
       })
@@ -91,9 +91,9 @@ export default {
       if (!touch.endX || Math.abs(touch.endX - touch.startX) < 50) {
         return
       }
-      if (touch.startX > touch.endX) {
+      if (!this.selected && touch.startX > touch.endX) {
         this.nextLi()
-      } else {
+      } else if (!this.selected) {
         this.prevLi()
       }
     })
@@ -105,9 +105,9 @@ export default {
 .home-list {
   flex: 1;
   padding: 0 24px;
-  transition: all 0.5s ease;
+  transition: all 0.6s ease;
   li {
-    transition: all 0.5s ease;
+    transition: all 0.6s ease;
   }
   ul,
   ul > li {

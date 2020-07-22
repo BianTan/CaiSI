@@ -1,29 +1,31 @@
 <template>
-  <div :class="['list-cart', {'selected': selected}, {'showCart': show}]">
-    <div class="list-head" @click="headClick()">
-      <span class="head-icon">
-        <i
-          class="fas fa-map-marker-alt"
-          :style="{color: liData.colors[1]}"></i>
-      </span>
-      <p class="head-title">{{liData.city}}</p>
-    </div>
-    <div class="list-body">
-      <div class="skycon"><i :class="['fas', skycon_icon(liData.data.skycon)]"></i>{{liData.data.skycon | skycon}}</div>
-      <div class="temperature">
-        <div class="box-left">{{liData.data.temperature | temperature}}</div>
-        <div class="box-right">
-          <div class="top">°</div>
-          <div class="bottom">体感 {{liData.data.apparent_temperature | temperature}}°</div>
+  <transition @enter="handleEnter" @leave="handleLeave">
+    <div :class="['list-cart', {'selected': selected}]" v-if="MixinGetObjKey(liData.data, 'skycon')">
+      <div class="list-head" @click="headClick()">
+        <span class="head-icon">
+          <i
+            class="fas fa-map-marker-alt"
+            :style="{color: liData.colors[1]}"></i>
+        </span>
+        <p class="head-title">{{liData.city}}</p>
+      </div>
+      <div class="list-body">
+        <div class="skycon"><i :class="['fas', skycon_icon(liData.data.skycon)]"></i>{{liData.data.skycon | skycon}}</div>
+        <div class="temperature">
+          <div class="box-left">{{liData.data.temperature | temperature}}</div>
+          <div class="box-right">
+            <div class="top">°</div>
+            <div class="bottom">体感 {{liData.data.apparent_temperature | temperature}}°</div>
+          </div>
+        </div>
+        <div class="more-info">
+          <div class="direction" v-if="MixinGetObjKey(liData.data, 'wind', 'direction')">{{liData.data.wind.direction | windDir}}</div>
+          <!-- <div class="speed">风速 {{liData.data.wind.speed}}</div> -->
+          <div class="humidity">湿度 {{liData.data.humidity | humidity}}</div>
         </div>
       </div>
-      <div class="more-info">
-        <div class="direction" v-if="MixinGetObjKey(liData.data, 'wind', 'direction')">{{liData.data.wind.direction | windDir}}</div>
-        <!-- <div class="speed">风速 {{liData.data.wind.speed}}</div> -->
-        <div class="humidity">湿度 {{liData.data.humidity | humidity}}</div>
-      </div>
     </div>
-  </div>
+  </transition>
 </template>
 
 <script>
@@ -144,6 +146,26 @@ export default {
       rect.appWidth = appRect.width
       rect.appHeight = appRect.height
       this.$store.commit('selectCart', { rect, liData })
+    },
+    handleEnter (el) {
+      Object.assign(el.style, {
+        opacity: '0'
+      })
+      setTimeout(() => {
+        Object.assign(el.style, {
+          opacity: '1'
+        })
+      }, 0)
+    },
+    handleLeave (el) {
+      Object.assign(el.style, {
+        opacity: '1'
+      })
+      setTimeout(() => {
+        Object.assign(el.style, {
+          opacity: '0'
+        })
+      }, 0)
     }
   },
   filters: {
@@ -239,6 +261,8 @@ export default {
       }
     }
   },
+  created() {
+  },
   mounted() {
     /**
      * 等待动画效果结束取消动画 Class
@@ -246,7 +270,7 @@ export default {
     if (!this.liData.loading) {
       setTimeout(() => {
         this.show = this.selected
-      }, 800)
+      }, 600)
     }
   }
 }
@@ -258,15 +282,15 @@ export default {
   height: 100%;
   margin: 0 12px;
   background: white;
-  box-shadow: 0 10px 10px rgba(0, 0, 0, .24);
   border-radius: 8px;
   padding-bottom: 64px;
+  transition: all .6s ease;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, .24);
   .list-head {
     padding: 20px;
     display: flex;
     align-items: center;
     box-sizing: border-box;
-    transform: translate3d(0, 0, 0);
     .head-icon {
       width: 36px;
       height: 36px;
@@ -331,7 +355,7 @@ export default {
   visibility: hidden;
 }
 .showCart {
-  animation: showCart .8s;
+  animation: showCart .6s;
   animation-fill-mode: forwards;
 }
 @keyframes showCart {

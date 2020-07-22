@@ -29,12 +29,11 @@ export default {
 
 <style lang='scss' scoped>
 .navbar {
-  display: flex;
-  align-items: center;
   height: 48px;
-  font-size: 15px;
-  z-index: 1;
   color: white;
+  display: flex;
+  font-size: 15px;
+  align-items: center;
   .title {
     display: flex;
     justify-content: center;

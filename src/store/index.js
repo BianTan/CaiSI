@@ -26,7 +26,8 @@ export default new Vuex.Store({
         loading: true
       }
     ],
-    selected: null
+    selected: null,
+    unselect: null
   },
   mutations: {
     setListData(state, payload) {
@@ -35,7 +36,6 @@ export default new Vuex.Store({
     },
     setHomeData(state, payload) {
       state.addressList.splice(0, 1, payload)
-      // state.addressList[0] = payload
     },
     nextLi(state) {
       if (state.addressList[0].unshow) {
@@ -54,7 +54,12 @@ export default new Vuex.Store({
       }
     },
     selectCart(state, payload) {
+      state.unselect = null
       state.selected = payload
+    },
+    setunSelect(state) {
+      state.unselect = state.selected
+      state.selected = null
     }
   },
   actions: {
@@ -65,6 +70,9 @@ export default new Vuex.Store({
     },
     getActiveIndex(state) {
       return state.activeIndex
+    },
+    test(state) {
+      return state.selected
     }
   },
   modules: {
