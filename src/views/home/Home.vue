@@ -4,7 +4,9 @@
     <nav-bar left="bars" title="彩思天气" right="search" @rightClick="console.log('click')"/>
     <!-- 菜单栏 ↑ -->
     <!-- 用户信息 ↓ -->
-    <home-head v-if="!addressList[activeIndex].loading"/>
+    <div class="head">
+      <home-head v-if="!addressList[activeIndex].loading"/>
+    </div>
     <!-- 用户信息 ↑ -->
     <!-- 背景颜色 ↓ -->
     <home-background/>
@@ -52,5 +54,8 @@ export default {
   display: flex;
   overflow: hidden;
   flex-direction: column;
+  .head {
+    min-height: 160px;
+  }
 }
 </style>
