@@ -3,7 +3,7 @@
 ### 这是一个 天气预报 的 Vue 项目
 UI 设计参考自：https://github.com/lizzz0523/limni/tree/master/todo-app
 
-![1.jpg](https://github.com/BianTan/CaiSI/images/1.jpg)
+![1.jpg](https://github.com/BianTan/CaiSI/blob/master/images/1.png)
 
 ## Project setup
 ```
