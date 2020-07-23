@@ -7,7 +7,7 @@ UI 设计参考自：https://github.com/lizzz0523/limni/tree/master/todo-app
 欢迎各位访问 http://66.42.48.63/ 预览
 
 ### 首页(也只有首页XD)
-![weather](https://github.com/BianTan/CaiSI/blob/master/images/weather.min.gif)
+![weather](https://github.com/BianTan/CaiSI/blob/master/images/weather-min.gif)
 
 ## Project setup
 ```
